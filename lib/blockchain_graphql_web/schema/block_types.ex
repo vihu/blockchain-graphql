@@ -6,6 +6,7 @@ defmodule BlockchainGraphqlWeb.Schema.BlockTypes do
     field :height, :integer
     field :time, :integer
     field :hash, :string
+    field :txns, :integer
   end
 
 end
