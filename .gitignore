@@ -29,3 +29,4 @@ blockchain_graphql-*.tar
 
 *.log
 log/*.log
+log/
