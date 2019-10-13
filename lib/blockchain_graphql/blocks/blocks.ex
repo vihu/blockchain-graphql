@@ -1,6 +1,7 @@
 defmodule BlockchainGraphql.Blocks do
 
-  alias BlockchainGraphql.Block
+  alias BlockchainGraphql.{Block, Txns}
+
   @default_limit 500
 
   def list_blocks(limit) do
@@ -8,15 +9,6 @@ defmodule BlockchainGraphql.Blocks do
   end
   def list_blocks do
     list_blocks_(@default_limit)
-  end
-
-  defp block(block) do
-    %Block{
-      height: :blockchain_block.height(block),
-      time: :blockchain_block.time(block),
-      hash: :libp2p_crypto.bin_to_b58(:blockchain_block.hash_block(block)),
-      txns: length(:blockchain_block.transactions(block))
-    }
   end
 
   defp list_blocks_(limit) do
@@ -34,5 +26,14 @@ defmodule BlockchainGraphql.Blocks do
     else
       []
     end
+  end
+
+  defp block(block) do
+    %Block{
+      height: :blockchain_block.height(block),
+      time: :blockchain_block.time(block),
+      hash: :libp2p_crypto.bin_to_b58(:blockchain_block.hash_block(block)),
+      txns: Txns.list_txns(block)
+    }
   end
 end

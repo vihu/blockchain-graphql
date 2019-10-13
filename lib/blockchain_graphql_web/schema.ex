@@ -3,6 +3,7 @@ defmodule BlockchainGraphqlWeb.Schema do
 
   import_types Absinthe.Type.Custom
   import_types BlockchainGraphqlWeb.Schema.BlockTypes
+  import_types BlockchainGraphqlWeb.Schema.TxnTypes
 
   alias BlockchainGraphqlWeb.Resolvers
 
